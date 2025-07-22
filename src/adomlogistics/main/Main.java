@@ -93,11 +93,21 @@ public class Main {
             scanner.nextLine(); // Consume newline
 
             switch (choice) {
-                case 1: deliveryMenu(); break;
-                case 2: vehicleMenu(); break;
-                case 3: driverMenu(); break;
-                case 4: maintenanceMenu(); break;
-                case 5: reportsMenu(); break;
+                case 1:
+                    deliveryMenu();
+                    break;
+                case 2:
+                    vehicleMenu();
+                    break;
+                case 3:
+                    driverMenu();
+                    break;
+                case 4:
+                    maintenanceMenu();
+                    break;
+                case 5:
+                    reportsMenu();
+                    break;
                 case 6:
                     System.out.println("Exiting system...");
                     return;
@@ -133,8 +143,7 @@ public class Main {
                     int hours = scanner.nextInt();
 
                     deliveryService.addDelivery(
-                            new Delivery(pkgId, origin, dest, hours)
-                    );
+                            new Delivery(pkgId, origin, dest, hours));
                     System.out.println("Delivery added!");
                     break;
 
@@ -159,14 +168,21 @@ public class Main {
 
                 case 5:
                     System.out.println("\nActive Deliveries:");
-                    for (Delivery d : deliveryService.getActiveDeliveries()) {
-                        System.out.println(d);
+                    Delivery[] activeDeliveries = deliveryService.getActiveDeliveries();
+                    if (activeDeliveries != null) {
+                        for (Delivery d : activeDeliveries) {
+                            System.out.println(d);
+                        }
+                    } else {
+                        System.out.println("No active deliveries.");
                     }
                     break;
 
-                case 6: return;
+                case 6:
+                    return;
 
-                default: System.out.println("Invalid choice!");
+                default:
+                    System.out.println("Invalid choice!");
             }
         }
     }
@@ -411,7 +427,7 @@ public class Main {
                                 (v.driverId != null ? "In Use" : "Available"));
                     }
                     System.out.println("\nAverage Mileage: " +
-                            (vehicles.length > 0 ? totalMileage/vehicles.length : 0) + " km");
+                            (vehicles.length > 0 ? totalMileage / vehicles.length : 0) + " km");
                     break;
 
                 case 3:
